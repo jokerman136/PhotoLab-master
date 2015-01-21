@@ -66,7 +66,7 @@ public class IntArrayWorker
   /**
    * print the values in the array in rows and columns
    */
-  public void print() // standard way of looping over 2d array with a for loop. Subzero gives columns. .length gives rows.
+  public void print() // standard way of looping over 2d array with a for loop. Sub zero gives columns. .length gives rows.
   {
     for (int row = 0; row < matrix.length; row++)
     {
@@ -102,14 +102,45 @@ public class IntArrayWorker
     }
   }
   
+  public int getCount(int searchValue)
+  {
+	  int countTotal = 0;
+	  for (int row = 0; row < matrix.length; row ++)
+	  {
+		  for(int col = 0; col < matrix[0].length; col++)
+		  {
+			  if(matrix[row][col] == searchValue)
+			  {
+				  countTotal++;
+			  }
+		  }
+	  }
+	  
+	  countTotal = 0;
+	  
+	  for(int[] row : matrix)
+	  {
+		  for(int spot : row)
+		  {
+			  if(spot == searchValue)
+			  {
+				  countTotal++;
+			  }
+		  }
+	  }
+	  return countTotal;
+  }
+  
   public void getColTotal(int [] col)
   {
-	  int colTotal;
+	  int colTotal = 0;
 	  
-	  for (int row = 0; row > matrix[col].length; row++)
+	  for (int col = 0; col > matrix.length; row++)
 	  {
 		  colTotal =+ matrix [col][row];
 	  }
+	  
+	  return colTotal;
   }
  
 }
