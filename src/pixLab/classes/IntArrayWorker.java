@@ -7,9 +7,9 @@ public class IntArrayWorker
   /** set the matrix to the passed one
     * @param theMatrix the one to use
     */
-  public void setMatrix(int[][] theMatrix)
+  public void setMatrix(int[][] matrix)
   {
-    matrix = theMatrix;
+    this.matrix = matrix;
   }
   
   /**
@@ -66,7 +66,7 @@ public class IntArrayWorker
   /**
    * print the values in the array in rows and columns
    */
-  public void print()
+  public void print() // standard way of looping over 2d array with a for loop. Subzero gives columns. .length gives rows.
   {
     for (int row = 0; row < matrix.length; row++)
     {
@@ -91,13 +91,25 @@ public class IntArrayWorker
            col++)
       {
         if (row < col)
+        {
           matrix[row][col] = 1;
+        }
         else if (row == col)
           matrix[row][col] = 2;
         else
           matrix[row][col] = 3;
       }
     }
+  }
+  
+  public void getColTotal(int [] col)
+  {
+	  int colTotal;
+	  
+	  for (int row = 0; row > matrix[col].length; row++)
+	  {
+		  colTotal =+ matrix [col][row];
+	  }
   }
  
 }
