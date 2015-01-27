@@ -131,16 +131,40 @@ public class IntArrayWorker
 	  return countTotal;
   }
   
-  public void getColTotal(int [] col)
+  public int getColTotal(int col)
   {
 	  int colTotal = 0;
 	  
-	  for (int col = 0; col > matrix.length; row++)
+	  for (int[] row : matrix)
 	  {
-		  colTotal =+ matrix [col][row];
+		  colTotal +=row[col];
+	  }
+	  
+	  colTotal = 0;
+	  for (int row = 0; row < matrix.length; row++)
+	  {
+		  colTotal += matrix[row][col];
+	  
 	  }
 	  
 	  return colTotal;
+  }
+  
+  public int getLargest()
+  {
+	  int largestSoFar = Integer.MIN_VALUE;
+	  
+	  for (int row = 0; row < matrix.length; row++)
+	  {
+		  for (int col = 0; col < matrix[0].length; col++)
+		  {
+			  if(matrix[row][col] > largestSoFar)
+			  {
+				  largestSoFar = matrix[row][col];
+			  }
+		  }
+	  }
+	  return largestSoFar;
   }
  
 }
