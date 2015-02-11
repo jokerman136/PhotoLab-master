@@ -9,10 +9,23 @@ package pixLab.classes;
  */
 public class PictureTester
 {
+	public static void testKeepOnlyGreen()
+	{
+		Picture beach = new Picture("beach.jpg");
+		beach.keepOnlyGreen();
+		beach.explore();
+	}
+	
+	public static void testKeepOnlyRed()
+	{
+		Picture beach = new Picture("beach.jpg");
+		beach.keepOnlyRed();
+		beach.explore();
+	}
+	
 	public static void testKeepOnlyBlue()
 	{
 		Picture beach = new Picture("beach.jpg");
-		beach.explore();
 		beach.keepOnlyBlue();
 		beach.explore();
 	}
@@ -24,6 +37,28 @@ public class PictureTester
 		beach.explore();
 		beach.zeroBlue();
 		beach.explore();
+	}
+	
+	public static void testRandomChange()
+	{
+		Picture temple = new Picture();
+		temple.explore();
+		temple.randomChange();
+		temple.explore();
+	}
+	
+	public static void testSepiaTone()
+	{
+		Picture beach = new Picture("beach.jpg");
+		beach.explore();
+		beach.sepiaTone();
+		beach.explore();
+	}
+	
+	public static void testEdgeDetection()
+	{
+		Picture temple = new Picture();
+		
 	}
 
 	/** Method to test mirrorVertical */
@@ -68,14 +103,14 @@ public class PictureTester
 		// uncomment a call here to run a test
 		// and comment out the ones you don't want
 		// to run
-		testZeroBlue();
-		testKeepOnlyBlue();
+		// testZeroBlue();
+		// testKeepOnlyBlue();
 		// testKeepOnlyRed();
 		// testKeepOnlyGreen();
 		// testNegate();
 		// testGrayscale();
 		// testFixUnderwater();
-		testMirrorVertical();
+		// testMirrorVertical();
 		// testMirrorTemple();
 		// testMirrorArms();
 		// testMirrorGull();
@@ -90,5 +125,7 @@ public class PictureTester
 		// testSetRedToHalfValueInTopHalf();
 		// testClearBlueOverValue(200);
 		// testGetAverageForColumn(0);
+		testSepiaTone();
+		testRandomChange();
 	}
 }

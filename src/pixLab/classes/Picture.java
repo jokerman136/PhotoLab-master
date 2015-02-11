@@ -88,6 +88,32 @@ public class Picture extends SimplePicture
 	 *         height and width.
 	 */
 
+	public void keepOnlyRed()
+	{
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels)
+		{
+			for (Pixel pixelObj : rowArray)
+			{
+				pixelObj.setGreen(0);
+				pixelObj.setBlue(0);
+			}
+		}
+	}
+
+	public void keepOnlyGreen()
+	{
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels)
+		{
+			for (Pixel pixelObj : rowArray)
+			{
+				pixelObj.setBlue(0);
+				pixelObj.setRed(0);
+			}
+		}
+	}
+
 	public void keepOnlyBlue()
 	{
 		Pixel[][] pixels = this.getPixels2D();
@@ -138,6 +164,57 @@ public class Picture extends SimplePicture
 				leftPixel = pixels[row][col];
 				rightPixel = pixels[row][width - 1 - col];
 				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+	public void sepiaTone()
+	{
+		Pixel[][] imageMatrix = this.getPixels2D();
+		for (int row = 0; row < imageMatrix.length; row++)
+		{
+			for (int col = 0; col < imageMatrix[0].length; col++)
+			{
+				// Pseudocode
+				/**
+				 * change pixel to a sepia tint of brown to white (112, 66, 20)
+				 * dark sepia to (255, 255, 255) first Alg: Cut the red to fit
+				 * between 112-255 shift green to half of Red Shift Blue to a
+				 * third of Green
+				 */
+				Pixel sepiaPixel = imageMatrix[row][col];
+				int averageColor = (sepiaPixel.getRed() + sepiaPixel.getBlue() + sepiaPixel.getGreen()) / 3;
+				if (averageColor < 80)
+				{
+					sepiaPixel.setGreen(sepiaPixel.getRed()/2);
+					sepiaPixel.setBlue(sepiaPixel.getGreen()/4);
+				}
+				else
+				{
+					//(255, 204, 51) Wheatish color
+					sepiaPixel.setRed((int)(sepiaPixel.getRed()*.9));
+					sepiaPixel.setGreen((int)(sepiaPixel.getRed()*.8));
+					sepiaPixel.setBlue((int)(sepiaPixel.getRed()*.4));
+				}
+				
+				
+			}
+		}
+	}
+	
+	public void randomChange()
+	{
+		Pixel [][] imageMatrix = this.getPixels2D();
+		for(int row = 0; row < imageMatrix.length; row += 2)
+		{
+			for(int col = 0; col < imageMatrix[0].length; col ++)
+			{
+				int randomRed = (int)(Math.random()* 256);
+				int randomGreen = (int)(Math.random()* 256);
+				int randomBlue = (int)(Math.random()* 256);
+				imageMatrix[row][col].setRed(randomRed);
+				imageMatrix[row][col].setGreen(randomGreen);
+				imageMatrix[row][col].setBlue(randomBlue);
 			}
 		}
 	}
