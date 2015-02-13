@@ -55,11 +55,6 @@ public class PictureTester
 		beach.explore();
 	}
 	
-	public static void testEdgeDetection()
-	{
-		Picture temple = new Picture();
-		
-	}
 
 	/** Method to test mirrorVertical */
 	public static void testMirrorVertical()

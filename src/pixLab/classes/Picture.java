@@ -88,6 +88,27 @@ public class Picture extends SimplePicture
 	 *         height and width.
 	 */
 
+	
+	public void negate()
+	{
+		
+	}
+	
+	public void grayscale()
+	{
+		
+	}
+	
+	public void fixUnderwater()
+	{
+		
+	}
+	
+	public void mirrorVerticalRightToLeft()
+	{
+		
+	}
+	
 	public void keepOnlyRed()
 	{
 		Pixel[][] pixels = this.getPixels2D();
