@@ -9,6 +9,15 @@ package pixLab.classes;
  */
 public class PictureTester
 {
+	
+	public static void testFixUnderwater()
+	{
+		Picture water = new Picture("water.jpg");
+		water.explore();
+		water.fixUnderwater();
+		water.explore();
+	}
+	
 	public static void testGrayscale()
 	{
 		Picture beach = new Picture("beach.jpg");
@@ -116,9 +125,9 @@ public class PictureTester
 		// testKeepOnlyBlue();
 		// testKeepOnlyRed();
 		// testKeepOnlyGreen();
-		testNegate();
-		testGrayscale();
-		// testFixUnderwater();
+		// testNegate();
+		// testGrayscale();
+		testFixUnderwater();
 		// testMirrorVertical();
 		// testMirrorTemple();
 		// testMirrorArms();
