@@ -10,6 +10,14 @@ package pixLab.classes;
 public class PictureTester
 {
 	
+	public static void testMirrorVerticalRightToLeft()
+	{
+		Picture caterpillar = new Picture("caterpillar.jpg");
+	    caterpillar.explore();
+	    caterpillar.mirrorVerticalRightToLeft();
+	    caterpillar.explore();
+	}
+	
 	public static void testFixUnderwater()
 	{
 		Picture water = new Picture("water.jpg");
@@ -125,10 +133,11 @@ public class PictureTester
 		// testKeepOnlyBlue();
 		// testKeepOnlyRed();
 		// testKeepOnlyGreen();
-		// testNegate();
-		// testGrayscale();
+		testNegate();
+		testGrayscale();
 		testFixUnderwater();
-		// testMirrorVertical();
+		testMirrorVertical();
+		testMirrorVerticalRightToLeft();
 		// testMirrorTemple();
 		// testMirrorArms();
 		// testMirrorGull();

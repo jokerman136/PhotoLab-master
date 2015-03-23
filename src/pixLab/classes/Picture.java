@@ -88,7 +88,6 @@ public class Picture extends SimplePicture
 	 *         height and width.
 	 */
 
-	
 	public void negate()
 	{
 		Pixel[][] pixels = this.getPixels2D();
@@ -102,7 +101,7 @@ public class Picture extends SimplePicture
 			}
 		}
 	}
-	
+
 	public void grayscale()
 	{
 		Pixel[][] pixels = this.getPixels2D();
@@ -116,22 +115,131 @@ public class Picture extends SimplePicture
 			}
 		}
 	}
-	
+
 	public void fixUnderwater()
 	{
 		Pixel[][] pixels = this.getPixels2D();
-		for (Pixel[] rowArray : pixels)
+
+		int rAvg = 0;
+		int gAvg = 0;
+		int bAvg = 0;
+		int totalPixels = 0;
+
+		int maxR = 0;
+		int minR = 255;
+		int maxG = 0;
+		int minG = 255;
+		int maxB = 0;
+		int minB = 255;
+
+		// takes a sample from a fish and finds the average color value and
+		// range of colors
+		for (int row = 26; row < 36; row++)
 		{
-			for (Pixel pixelObj : rowArray)
+			for (int col = 178; col < 198; col++)
 			{
-				pixelObj.setRed((pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen()) / 3);
-				pixelObj.setBlue((pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen()) / 2);
-				pixelObj.setGreen((pixelObj.getRed() + pixelObj.getBlue() + pixelObj.getGreen()) / 3);
+				totalPixels++;
+
+				Pixel pixel = pixels[row][col];
+
+				rAvg += pixel.getRed();
+				gAvg += pixel.getGreen();
+				bAvg += pixel.getBlue();
+
+				if (pixel.getRed() > maxR)
+				{
+					maxR = pixel.getRed();
+				}
+
+				if (pixel.getRed() < minR)
+				{
+					minR = pixel.getRed();
+				}
+				if (pixel.getGreen() > maxG)
+				{
+					maxG = pixel.getGreen();
+				}
+				if (pixel.getGreen() < minG)
+				{
+					minG = pixel.getGreen();
+				}
+				if (pixel.getBlue() > maxB)
+				{
+					maxB = pixel.getBlue();
+				}
+				if (pixel.getGreen() < minB)
+				{
+					minB = pixel.getBlue();
+				}
+
+			}
+		}
+
+		rAvg = rAvg / totalPixels;
+		gAvg = gAvg / totalPixels;
+		bAvg = bAvg / totalPixels;
+
+		Color averageColor = new Color(rAvg, gAvg, bAvg);
+
+		int rRng = (maxR - minR);
+		int gRng = (maxG - minG);
+		int bRng = (maxB - minB);
+
+		int rDis = rRng;
+		int gDis = gRng;
+		int bDis = bRng;
+
+		double maxDistance = Math.sqrt(rDis * rDis + gDis * gDis + bDis * bDis);
+
+		double tol = 1.7;
+
+		for (int row = 0; row < pixels.length; row++)
+		{
+			for (int col = 0; col < pixels[0].length; col++)
+			{
+				Pixel myPixel = pixels[row][col];
+
+				boolean close = myPixel.colorDistance(averageColor) < maxDistance * tol;
+				if (close)
+				{
+					myPixel.setBlue(myPixel.getBlue() + 50);
+				}
+				else
+				{
+					myPixel.setBlue(myPixel.getBlue() - 50);
+				}
 			}
 		}
 	}
-	
+
 	public void mirrorVerticalRightToLeft()
+	{
+		Pixel[][] pixels = this.getPixels2D();
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    int width = pixels[0].length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	      for (int col = 0; col < width / 2; col++)
+	      {
+	        leftPixel = pixels[row][col];
+	        rightPixel = pixels[row][width - 1 - col];
+	        leftPixel.setColor(rightPixel.getColor());
+	      }
+	    }
+	}
+
+	public void mirrorHorizontal()
+	{
+		
+	}
+	
+	public void mirrorHorizontalBottomToTop()
+	{
+		
+	}
+	
+	public void mirrorDiagonal()
 	{
 		
 	}
@@ -234,32 +342,31 @@ public class Picture extends SimplePicture
 				int averageColor = (sepiaPixel.getRed() + sepiaPixel.getBlue() + sepiaPixel.getGreen()) / 3;
 				if (averageColor < 80)
 				{
-					sepiaPixel.setGreen(sepiaPixel.getRed()/2);
-					sepiaPixel.setBlue(sepiaPixel.getGreen()/4);
+					sepiaPixel.setGreen(sepiaPixel.getRed() / 2);
+					sepiaPixel.setBlue(sepiaPixel.getGreen() / 4);
 				}
 				else
 				{
-					//(255, 204, 51) Wheatish color
-					sepiaPixel.setRed((int)(sepiaPixel.getRed()*.9));
-					sepiaPixel.setGreen((int)(sepiaPixel.getRed()*.8));
-					sepiaPixel.setBlue((int)(sepiaPixel.getRed()*.4));
+					// (255, 204, 51) Wheatish color
+					sepiaPixel.setRed((int) (sepiaPixel.getRed() * .9));
+					sepiaPixel.setGreen((int) (sepiaPixel.getRed() * .8));
+					sepiaPixel.setBlue((int) (sepiaPixel.getRed() * .4));
 				}
-				
-				
+
 			}
 		}
 	}
-	
+
 	public void randomChange()
 	{
-		Pixel [][] imageMatrix = this.getPixels2D();
-		for(int row = 0; row < imageMatrix.length; row += 2)
+		Pixel[][] imageMatrix = this.getPixels2D();
+		for (int row = 0; row < imageMatrix.length; row += 2)
 		{
-			for(int col = 0; col < imageMatrix[0].length; col ++)
+			for (int col = 0; col < imageMatrix[0].length; col++)
 			{
-				int randomRed = (int)(Math.random()* 256);
-				int randomGreen = (int)(Math.random()* 256);
-				int randomBlue = (int)(Math.random()* 256);
+				int randomRed = (int) (Math.random() * 256);
+				int randomGreen = (int) (Math.random() * 256);
+				int randomBlue = (int) (Math.random() * 256);
 				imageMatrix[row][col].setRed(randomRed);
 				imageMatrix[row][col].setGreen(randomGreen);
 				imageMatrix[row][col].setBlue(randomBlue);
