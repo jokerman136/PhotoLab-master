@@ -13,9 +13,46 @@ public class PictureTester
 	public static void testMirrorVerticalRightToLeft()
 	{
 		Picture caterpillar = new Picture("caterpillar.jpg");
-	    caterpillar.explore();
 	    caterpillar.mirrorVerticalRightToLeft();
 	    caterpillar.explore();
+	}
+	
+	public static void testMirrorHorizontal()
+	{
+	    Picture caterpillar = new Picture("caterpillar.jpg");
+	    caterpillar.mirrorHorizontal();
+	    caterpillar.explore();
+	}
+	
+	public static void testMirrorHorizontalBottomToTop()
+	{
+	    Picture caterpillar = new Picture("caterpillar.jpg");
+	    caterpillar.mirrorHorizontalBottomToTop();
+	    caterpillar.explore();
+	}
+	
+	public static void testMirrorDiagonal()
+	{
+	    Picture caterpillar = new Picture("caterpillar.jpg");
+	    caterpillar.explore();
+	    caterpillar.mirrorDiagonal();
+	    caterpillar.explore();
+	}
+
+	public static void testMirrorArms()
+	{
+	    Picture snowman = new Picture("snowman.jpg");
+	    snowman.explore();
+	    snowman.mirrorArms();
+	    snowman.explore();
+	}
+	
+	public static void testMirrorGull()
+	{
+	    Picture seagull = new Picture("seagull.jpg");
+	    seagull.explore();
+	    seagull.mirrorGull();
+	    seagull.explore();
 	}
 	
 	public static void testFixUnderwater()
@@ -120,6 +157,13 @@ public class PictureTester
 		swan.edgeDetection(10);
 		swan.explore();
 	}
+	
+	public static void testCopy()
+	{
+	    Picture canvas = new Picture("640x480.jpg");
+	    canvas.createCollage();
+	    canvas.explore();
+	}
 
 	/**
 	 * Main method for testing. Every class can have a main method in Java
@@ -138,12 +182,14 @@ public class PictureTester
 		testFixUnderwater();
 		testMirrorVertical();
 		testMirrorVerticalRightToLeft();
-		// testMirrorTemple();
-		// testMirrorArms();
-		// testMirrorGull();
-		// testMirrorDiagonal();
+		testMirrorTemple();
+		testMirrorArms();
+		testMirrorGull();
+		testMirrorDiagonal();
+		testMirrorHorizontalBottomToTop();
+		testMirrorHorizontal();
 		// testCollage();
-		// testCopy();
+		testCopy();
 		// testEdgeDetection();
 		// testEdgeDetection2();
 		// testChromakey();
