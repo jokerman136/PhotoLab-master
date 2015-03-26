@@ -51,7 +51,7 @@ public class FauxToePanel extends JPanel
 				"TestRandom Change",
 				"Test Zero Blue",
 				"Test Copy",
-				"Tes",
+				"Test EdgeDetection",
 				"",
 				"",
 				"",
@@ -63,12 +63,12 @@ public class FauxToePanel extends JPanel
 		
 		imageArray = new String []
 			{
-				"",
-				"",
-				"",
-				"",
-				"",
-				""
+				"kitten2.jpg",
+				"water.jpg",
+				"wall.jpg",
+				"barbaraS.jpg",
+				"poker.jpg",
+				"redMotorcycle.jpg"
 			};
 	}
 	
@@ -106,14 +106,23 @@ public class FauxToePanel extends JPanel
 			@Override
 			public void itemStateChanged(ItemEvent currentEvent)
 			{
-				if(filterBox.getSelectedIndex()==0)
+				loadPic();
+			}
+		});
+		
+		filterBox.addItemListener(new ItemListener()
+		{
+			@Override
+			public void itemStateChanged(ItemEvent currentEvent)
+			{
+			if(filterBox.getSelectedIndex()==0)
 				{
 					loadPic();
 					basePicture.randomChange();
 					setupPicture();
 				}
 			}
-		});
+	    });
 		
 	}
 

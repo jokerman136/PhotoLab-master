@@ -21,4 +21,24 @@ public class FauxToeFrame
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
+	private void setResizable(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setContentPane(FauxToePanel basePanel2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setSize(int i, int j) {
+		// TODO Auto-generated method stub
+		
+	}
 }
