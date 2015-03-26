@@ -1,12 +1,16 @@
 package pixFaux.view;
 
 import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 import pixFaux.controller.FauxToeController;
 import pixLab.classes.ImageDisplay;
@@ -15,6 +19,7 @@ import pixLab.classes.Picture;
 
 public class FauxToePanel extends JPanel
 {
+	private FauxToeController baseController;
 	private JComboBox<String> filterBox;
 	private JComboBox<String> imageBox;
 	private JScrollPane imagePane;
@@ -22,7 +27,8 @@ public class FauxToePanel extends JPanel
 	private String [] imageArray;
 	private Picture basePicture;
 	
-	private FauxToePanel(FauxToeController baseController)
+	
+	FauxToePanel(FauxToeController baseController)
 	{
 		this.baseController = baseController;
 		
@@ -40,7 +46,30 @@ public class FauxToePanel extends JPanel
 	
 	private void setupComboBox()
 	{
-		String [] 
+		String [] filterArray =
+			{
+				"TestRandom Change",
+				"Test Zero Blue",
+				"Test Copy",
+				"Tes",
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+			};
+		filterBox = new JComboBox(filterArray);
+		
+		imageArray = new String []
+			{
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+			};
 	}
 	
 	
@@ -58,15 +87,33 @@ public class FauxToePanel extends JPanel
 		imagePane.setViewportView(picDisplay);
 	}
 	
+	private void loadPic()
+	{
+		basePicture = new Picture (imageArray[imageBox.getSelectedIndex()]);
+		setupPicture();
+	}
+	
 	private void setupLayout()
 	{
-		// TODO Auto-generated method stub
+
 		
 	}
 	
 	private void setupListeners()
 	{
-		// TODO Auto-generated method stub
+		imageBox.addItemListener(new ItemListener()
+		{
+			@Override
+			public void itemStateChanged(ItemEvent currentEvent)
+			{
+				if(filterBox.getSelectedIndex()==0)
+				{
+					loadPic();
+					basePicture.randomChange();
+					setupPicture();
+				}
+			}
+		});
 		
 	}
 

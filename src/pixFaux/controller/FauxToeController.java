@@ -4,11 +4,11 @@ import pixFaux.view.FauxToeFrame;
 
 public class FauxToeController
 {
-	private FauxToeFrame appFrame;
+	private FauxToeFrame baseFrame;
 	
 	public FauxToeController()
 	{
-		appFrame = new FauxToeFrame(this);
+		baseFrame = new FauxToeFrame(this);
 	}
 	
 	public void start()
